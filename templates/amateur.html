@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Amateur
+{% endblock %}
+
+{% block body %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Tourist club</h1>
+    </div>
+
+<div align="center"><p>Current amateur list has a following form:</p></div>
+<hr class="mb-4">
+<div class="web-form">
+    <form method="POST">
+        <div class="row">
+
+                      <div class="col-md-5 mb-3">
+                        <label for="section">Section</label>
+                        <select name='section' class="custom-select d-block w-100" id="section" required="">
+                            <option selected value=" "></option>
+                            <option>swimming</option>
+                            <option>MMA</option>
+                            <option>gym</option>
+                            <option>athlete</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-md-5 mb-3">
+                        <label for="sex">Sex</label>
+                        <select name='sex' class="custom-select d-block w-100" id="sex" required="">
+                          <option selected value=" "></option>
+                          <option>M</option>
+                          <option>F</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-5 mb-3">
+                        <label for="best">Best</label>
+                        <select name='best' class="custom-select d-block w-100" id="best" required="">
+                          <option selected value=" "></option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </div>
+        </div>
+        <button class="myclass btn" type="submit">Apply</button>
+    </form>
+</div>
+<p> </p>
+<div class="container table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>The best hike</th>
+                  <th>Section</th>
+                  <th>Sex</th>
+                </tr>
+        </thead>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.age }}</td>
+            <td>{{ row.the_best }}</td>
+            <td>{{ row.section }}</td>
+            <td>{{ row.sex }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Total:</th>
+            <th>{{ am_num }}</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+
+<div align="center"><p>Choose your coach:</p></div>
+<hr class="mb-4">
+<div class="web-form">
+    <form method="POST">
+        <div class="row">
+
+                      <div class="col-md-5 mb-3">
+                        <label for="coach_section">Section</label>
+                        <select name='coach_section' class="custom-select d-block w-100" id="coach_section" required="">
+                            <option selected value=" "></option>
+                            <option>swimming</option>
+                            <option>MMA</option>
+                            <option>gym</option>
+                            <option>athlete</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-md-5 mb-3">
+                        <label for="coach_age">Age</label>
+                        <select name='coach_age' class="custom-select d-block w-100" id="coach_age" required="">
+                          <option selected value=" "></option>
+                          <option>20</option>
+                          <option>22</option>
+                          <option>25</option>
+                          <option>30</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-md-5 mb-3">
+                        <label for="coach_sex">Sex</label>
+                        <select name='coach_sex' class="custom-select d-block w-100" id="coach_sex" required="">
+                          <option selected value=" "></option>
+                          <option>M</option>
+                          <option>F</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-5 mb-3">
+                        <label for="coach_time">Time</label>
+                        <select name='coach_time' class="custom-select d-block w-100" id="coach_time" required="">
+                          <option selected value=" "></option>
+                          {% for time in training_time %}
+                            <option>{{ time }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+        </div>
+        <button class="myclass mb-1 btn" type="submit">Apply</button>
+    </form>
+</div>
+<p> </p>
+<div class="container table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Sex</th>
+                  <th>Section</th>
+                  <th>Time</th>
+
+                </tr>
+        </thead>
+        {% for x, y in coach_rows %}
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.age }}</td>
+            <td>{{ x.sex }}</td>
+            <td>{{ x.section }}</td>
+            <td>{{ y.time }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Total:</th>
+            <th>{{ coach_number }}</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+<p> </p>
+<div align="center"><p>Just look at your hikes:</p></div>
+<hr class="mb-4">
+<div class="web-form">
+    <form method="POST">
+        <div class="row">
+
+                      <div class="col-md-3 mb-3">
+                        <label for="hike_type">Hike type</label>
+                        <select name='hike_type' class="custom-select d-block w-100" id="hike_type" required="">
+                            <option selected value=" "></option>
+                            <option>on_foot</option>
+                            <option>mountain</option>
+                            <option>equestrian</option>
+                            <option>water</option>
+                            <option>mountain</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-md-3 mb-3">
+                        <label for="route">Route</label>
+                        <select name='route' class="custom-select d-block w-100" id="route" required="">
+                          <option selected value=" "></option>
+                          <option>Colosseum</option>
+                          <option>Pompeii and Mount Vesuvius</option>
+                          <option>Leaning Tower of Pisa</option>
+                          <option>Lake Como</option>
+                          <option>Cinque Terre</option>
+                        </select>
+                      </div>
+
+
+                      <div class="col-md-3 mb-3">
+                        <label for="route_time">Hours per route</label>
+                        <select name='route_time' class="custom-select d-block w-100" id="route_time" required="">
+                          <option selected value=" "></option>
+                          <option>10</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>15</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label for="period">Hike date</label>
+                        <select name='period' class="custom-select d-block w-100" id="period" required="">
+                          <option selected value=" "></option>
+                          {% for date in start_date %}
+                            <option>{{ date }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="instructor_name">Instructor_name</label>
+                        <select name='instructor_name' class="custom-select d-block w-100" id="instructor_name" required="">
+                          <option selected value=" "></option>
+                          <option>Paolo</option>
+                          <option>Yen</option>
+                          <option>Richard</option>
+                          <option>Offset</option>
+                          <option>Jonson</option>
+                        </select>
+                      </div>
+
+
+                <!--<button type="submit" class="myclass btn btn-secondary">Apply</button>-->
+        </div>
+        <button class="myclass mb-1 btn" type="submit">Apply</button>
+    </form>
+</div>
+<p> </p>
+<div class="container table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Hike_type</th>
+                  <th>Route</th>
+                  <th>Route time</th>
+                  <th>Hike date</th>
+                  <th>Difficulty</th>
+                  <th>Instructor name</th>
+
+                </tr>
+        </thead>
+        {% for x, y in hike_rows %}
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ y.type_ }}</td>
+            <td>{{ y.route }}</td>
+            <td>{{ y.route_time }}</td>
+            <td>{{ y.period }}</td>
+            <td>{{ y.difficulty }}</td>
+            <td>{{ y.instructor_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
